@@ -13,7 +13,6 @@ public class AcaoDAO {
     private ConnectionSQL ConnectMySQL;
     private Connection connection = ConnectMySQL.getConnection();
 
-
     public ArrayList<Acao> listar() {
         try {
             ArrayList<Acao> acoes = new ArrayList<>();
@@ -37,14 +36,12 @@ public class AcaoDAO {
             System.out.println("Erro ao se conectar com o banco de ações. " + e.getMessage());
         }
         return null;
-    };
 
-//    public Boolean buscarPorTicker(String ticker){};
-//
-//    public Boolean cadastrar(Acao acao){}
-//
-//    public Boolean atualizar(Acao acao){};
-//
-//    public Boolean remover (String ticker){};
+    };
+    //    public Boolean cadastrar(Acao acao){}
+    //    public Boolean atualizar(Acao acao){};
+    //  public Boolean buscarPeloTicker(Acao acao){};
+    //public Boolean removerAcao(Acao acao){};
+    //    public Boolean remover (String ticker){};
 
 }
