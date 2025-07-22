@@ -23,31 +23,36 @@ O projeto segue uma arquitetura que separa as responsabilidades, facilitando fut
     * `AcaoMenu.java`: Estrutura preparada para abrigar o menu interativo do utilizador em futuras versões.
 
 ```
-/src
+/
+|-- database/
+|   `-- database.sql
 |
-|-- Main.java
+|-- src/
+|   |-- Main.java
+|   |
+|   |-- config/
+|   |   `-- ConnectionSQL.java
+|   |
+|   |-- dao/
+|   |   `-- AcaoDAO.java
+|   |
+|   |-- menu/
+|   |   `-- AcaoMenu.java
+|   |
+|   `-- model/
+|       `-- Acao.java
 |
-|-- config/
-|   `-- ConnectionSQL.java
-|
-|-- dao/
-|   `-- AcaoDAO.java
-|
-|-- menu/
-|   `-- AcaoMenu.java
-|
-`-- model/
-    `-- Acao.java
+|-- .gitignore
+|-- LICENSE
+`-- README.md
 ```
 
 ---
 
 ## **3. Banco de Dados** 🗄️
-Para suportar o armazenamento das ações analisadas, o sistema utilizará um banco de dados MySQL chamado `stock`.
+Para suportar o armazenamento das ações analisadas, o sistema utilizará um banco de dados MySQL chamado `stock`. O script para criação da estrutura encontra-se no ficheiro `database/database.sql` dentro do repositório.
 
-### **Script SQL Sugerido (DDL)**
-Abaixo, um script para criar a tabela `acaovalida`, que armazenará as informações das ações.
-
+### **Script SQL (DDL)**
 ```sql
 CREATE DATABASE IF NOT EXISTS stock;
 USE stock;
@@ -78,13 +83,14 @@ VALUES ('TAEE11', 'Energia Elétrica', 35.80, 8.50);
 
 ### **4.2. Passos para Execução**
 1.  **Clone o Repositório**
+    Abra um terminal e clone o projeto para a sua máquina local.
     ```bash
-    git clone <URL_DO_SEU_REPOSITORIO>
-    cd <NOME_DO_PROJETO>
+    git clone [https://github.com/MassolaGabriel/stock_value_analyzer.git](https://github.com/MassolaGabriel/stock_value_analyzer.git)
+    cd stock_value_analyzer
     ```
 
 2.  **Configure o Banco de Dados**
-    Execute o script SQL acima para criar o banco `stock` e a tabela `acaovalida`.
+    O script para criação do banco de dados (`database.sql`) está localizado na pasta `database`. Execute este ficheiro no seu cliente MySQL para criar o banco `stock` e a tabela `acaovalida`.
 
 3.  **Ajuste a Ligação**
     Navegue até ao ficheiro `src/config/ConnectionSQL.java` e verifique se as constantes `HOST`, `USER` e `PASSWORD` correspondem às credenciais do seu banco de dados.
@@ -112,4 +118,3 @@ VALUES ('TAEE11', 'Energia Elétrica', 35.80, 8.50);
     * **Listar:** Exibir todas as ações salvas.
     * **Atualizar:** Permitir a atualização do preço de uma ação salva.
     * **Remover:** Apagar uma ação do portfólio.
-
