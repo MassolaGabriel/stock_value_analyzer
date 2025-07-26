@@ -89,12 +89,10 @@ public class Acao {
 
     @Override
     public String toString() {
-        return "{"
-                + "\"scanner\":" + scanner + ", "
-                + "\"setor\":\"" + setor + "\", "
-                + "\"ticker\":\"" + ticker + "\", "
-                + "\"mediaDivCincoAnos\":" + mediaDivCincoAnos + ", "
-                + "\"precoAtual\":" + precoAtual
-                + "}";
+        return String.format("Setor: %-15s | Ticker: %-10s | Média Div. 5a: %.2f%% | Preço Atual: R$%.2f",
+                this.setor,
+                this.ticker,
+                this.mediaDivCincoAnos,
+                this.precoAtual);
     }
 }
