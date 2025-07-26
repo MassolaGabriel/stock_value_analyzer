@@ -10,15 +10,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AcaoDAO {
-    private ConnectionSQL ConnectMySQL;
-    private Connection connection = ConnectMySQL.getConnection();
+    private Connection connection = ConnectionSQL.getConnection();
 
     public ArrayList<Acao> listarAcoes() {
-        try {
-            ArrayList<Acao> acoes = new ArrayList<>();
-            String sql = "SELECT * FROM todasAcoes;";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+        if (connection == null) {
+            System.out.println("Não foi possível listar as ações. A conexão com o banco não foi estabelecida.");
+            return null;
+        }
+
+        ArrayList<Acao> acoes = new ArrayList<>();
+        String sql = "SELECT * FROM todasAcoes;";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) { // Usando try-with-resources
 
             while (rs.next()){
                 String setor = rs.getString("setor");
@@ -27,17 +31,13 @@ public class AcaoDAO {
                 Double mediaDivCincoAnos = rs.getDouble("mediaDivCincoAnos");
 
                 Acao acao = new Acao(setor, ticker, precoAtual, mediaDivCincoAnos);
-
                 acoes.add(acao);
             }
-            return acoes;
-
-        }catch (SQLException e){
-            System.out.println("Erro ao se conectar com o banco de ações. " + e.getMessage());
+        } catch (SQLException e){
+            System.out.println("Erro ao buscar as ações no banco. " + e.getMessage());
         }
-        return null;
-
-    };
+        return acoes;
+    }
         public Boolean cadastrar(Acao acao){
             try {
                 String sql = "INSERT INTO todasAcoes (setor, ticker, precoAtual, mediaDivCincoAnos) VALUES (?, ?, ?, ?);";
