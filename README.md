@@ -77,9 +77,9 @@ VALUES ('TAEE11', 'ENERGIA ELÉTRICA', 35.80, 3.50);
 
 ---
 
-## **5. Como Configurar e Executar (Versão Consola)** 🚀
+## **5. Como Configurar e Utilizar (Versão Consola)** 🚀
 
-### **5.1. Pré-requisitos**
+### **5.1. Pré-requisitos de Instalação**
 * **JDK 8 ou superior:** Essencial para compilar e executar o código.
 * **Servidor MySQL:** Um banco de dados ativo para a persistência dos dados.
 * **IDE Java:** Recomenda-se o uso de Eclipse, IntelliJ IDEA ou VS Code.
@@ -106,6 +106,36 @@ VALUES ('TAEE11', 'ENERGIA ELÉTRICA', 35.80, 3.50);
 
 4.  **Compile e Execute**
     Importe o projeto na sua IDE, adicione o Driver JDBC e execute o método `main` da classe `AcaoMenu.java`.
+
+### **5.3. Guia de Utilização do Menu**
+
+#### **Como Obter a Média de Dividendos (Passo Manual)**
+Para cadastrar uma nova ação ou realizar a análise, primeiro precisa da média dos dividendos pagos nos últimos 5 anos.
+
+1.  **Aceda a um portal financeiro:** Recomendamos o **[Status Invest](https://statusinvest.com.br/)** pela sua clareza e detalhe de informações.
+2.  **Pesquise pelo Ticker:** Na barra de busca, digite o ticker da ação (ex: `ITSA4`, `TAEE11`).
+3.  **Encontre o Histórico de Proventos:** Na página da ação, procure pela secção de "Proventos" ou "Dividendos".
+4.  **Some os Dividendos Anuais:** Anote o valor total de dividendos pagos *por ação* em cada um dos últimos 5 anos.
+5.  **Calcule a Média:** Some os cinco valores e divida o total por 5. O resultado é a `mediaDivCincoAnos` que será usada no programa.
+
+#### **Cadastrar uma Nova Ação (Opção [2])**
+Ao escolher esta opção, o programa solicitará:
+- **Setor:** O setor de atuação da empresa.
+- **Ticker:** O código da ação na bolsa.
+- **Preço Atual:** A cotação atual da ação.
+- **Média de Dividendos:** O valor que calculou manualmente no passo anterior.
+
+Após inserir os dados, a ação será salva no banco de dados.
+
+#### **Analisar Preço Ideal (Opção [6] - Método Barsi)**
+Esta é a funcionalidade principal.
+1.  **Escolha a opção [6]** no menu.
+2.  **Digite o Ticker** da ação que deseja analisar (a ação já deve estar cadastrada no sistema).
+3.  **O sistema fará o cálculo:**
+    - A fórmula utilizada é: `Preço Teto = Média de Dividendos / Yield Alvo`
+    - O `Yield Alvo` no projeto é de **6%** (ou `0.06`).
+    - **Exemplo:** Se a média de dividendos de uma ação é `R$ 2,50`, o cálculo será: `Preço Teto = 2.50 / 0.06 = R$ 41,66`.
+4.  **Receba o Veredito:** O programa informará se o preço atual está abaixo do Preço Teto (✅ **BOM PREÇO PARA APORTE!**) ou acima (❌ **PREÇO NÃO ESTÁ IDEAL.**), mostrando qual seria o preço máximo recomendado para a compra.
 
 ---
 
