@@ -141,7 +141,7 @@ Esta é a funcionalidade principal.
 
 ## **6. Funcionalidades e Próximos Passos** ✨
 
-### **Backend (Consola) - Implementado**
+### **Backend (Console) - Implementado**
 * **Análise de Preço Teto (Método Barsi):** ✅ Calcula o preço máximo a ser pago por uma ação para obter um *yield* mínimo de 6%, ajudando o investidor a identificar pontos de entrada seguros.
 * **CRUD Completo de Ações:** ✅
     * **Cadastrar:** Salva novas ações e os seus dados financeiros no banco de dados.
