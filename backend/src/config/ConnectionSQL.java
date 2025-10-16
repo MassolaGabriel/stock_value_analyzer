@@ -8,7 +8,7 @@ public class ConnectionSQL {
 
     private static final String HOST = "jdbc:mysql://localhost:3306/stock";
     private static final String USER = "root";
-    private static final String PASSWORD = "!180720Ga";
+    private static final String PASSWORD = "PASSWORD"; // sua senha
 
     public static Connection getConnection() {
         try {
